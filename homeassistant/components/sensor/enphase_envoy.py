@@ -13,6 +13,7 @@ from homeassistant.components.sensor import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
 from homeassistant.const import (
     CONF_IP_ADDRESS, CONF_MONITORED_CONDITIONS, POWER_WATT)
+from homeassistant.const import DEVICE_DEFAULT_NAME
 
 
 REQUIREMENTS = ['envoy_reader==0.3']
@@ -57,7 +58,7 @@ class Envoy(Entity):
     def __init__(self, ip_address, sensor_type, name, unit):
         """Initialize the sensor."""
         self._ip_address = ip_address
-        self._name = name
+        self._name = name or DEVICE_DEFAULT_NAME
         self._unit_of_measurement = unit
         self._type = sensor_type
         self._state = None
